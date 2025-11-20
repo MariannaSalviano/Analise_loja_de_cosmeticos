@@ -337,3 +337,14 @@ INSERT INTO vendas (id_venda, id_produto, id_vendedor, data_venda, quantidade, v
 (50, 100, 9, '2024-12-31', 1, 599.00, 599.00);
 ```
 
+Consultas
+
+quantidade total de vendas por vendedor
+
+SELECT vendas.id_vendedor, 
+	vendedores.nome_vendedor, 
+	SUM(vendas.quantidade) AS quantidade_total_vendas
+FROM vendas INNER JOIN vendedores
+ON vendas.id_vendedor = vendedores.id_vendedor
+GROUP BY vendas.ID_vendedor
+ORDER BY quantidade_total_vendas DESC;
