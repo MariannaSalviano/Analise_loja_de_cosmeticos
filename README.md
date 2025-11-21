@@ -351,7 +351,8 @@ ORDER BY quantidade_total_vendas DESC;
 
 ´´´
 
-``` Criando procedures
+Criando procedures
+ ```
 CREATE DEFINER=`root`@`localhost` PROCEDURE `quantidade_total_vendas`()
 BEGIN
 	SELECT vendas.id_vendedor, 
