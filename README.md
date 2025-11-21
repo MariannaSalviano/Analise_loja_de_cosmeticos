@@ -351,7 +351,7 @@ ORDER BY quantidade_total_vendas DESC;
 
 ´´´
 
-Criando procedures
+``` Criando procedures
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `quantidade_total_vendas`()
 BEGIN
@@ -366,4 +366,4 @@ END
 
 CALL quantidade_total_vendas;
 
-´´
+``` 
