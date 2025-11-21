@@ -348,3 +348,22 @@ FROM vendas INNER JOIN vendedores
 ON vendas.id_vendedor = vendedores.id_vendedor
 GROUP BY vendas.ID_vendedor
 ORDER BY quantidade_total_vendas DESC;
+
+´´´
+
+Criando procedures
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `quantidade_total_vendas`()
+BEGIN
+	SELECT vendas.id_vendedor, 
+	vendedores.nome_vendedor, 
+	SUM(vendas.quantidade) AS quantidade_total_vendas
+	FROM vendas INNER JOIN vendedores
+	ON vendas.id_vendedor = vendedores.id_vendedor
+	GROUP BY vendas.ID_vendedor
+	ORDER BY quantidade_total_vendas DESC;
+END
+
+CALL quantidade_total_vendas;
+
+´´
