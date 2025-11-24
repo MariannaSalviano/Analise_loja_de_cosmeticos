@@ -479,7 +479,17 @@ WHERE v.id_produto IS NULL;
 ```
 ---
 
-
+```sql
+--Produtos mais caros por categoria
+SELECT *
+FROM produtos AS p
+WHERE p.preco_unitario = (
+    SELECT MAX(preco_unitario)
+    FROM produtos
+    WHERE categoria = p.categoria
+);
+```
+---
 
 
 
