@@ -383,6 +383,17 @@ AND preco_unitario > 52.90;
 SELECT DISTINCT id_produto, nome_produto, marca, data_cadastro FROM produtos
 WHERE marca = ('NovaDerma') OR marca =('BelleAura')
 ORDER BY data_cadastro DESC;
+
+```sql
+--Filtra os vendedores inativos
+SELECT * FROM vendedores
+WHERE ativo = 0;
+```
+
+```sql
+--Filtra os vendedores ativos
+SELECT * FROM vendedores
+WHERE ativo = 1;
 ```
 
 ```sql
