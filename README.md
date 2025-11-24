@@ -350,6 +350,15 @@ GROUP BY vendas.ID_vendedor
 ORDER BY quantidade_total_vendas DESC;
 
 ´´´
+´´´
+Filtros 
+
+SELECT id_produto, nome_produto,categoria,preco_unitario
+FROM produtos
+WHERE categoria IN ('Perfumaria', 'Maquiagem') AND preco_unitario >= 51.90
+ORDER BY preco_unitario ASC;
+
+´´´
 
 Criando procedures
  ```
