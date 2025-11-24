@@ -395,3 +395,21 @@ END
 CALL quantidade_total_vendas_por_produtos;
 
 ```
+
+quantidade total de vendas por categoria
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `quantidade_total_vendas_por_categoria`()
+BEGIN
+SELECT 
+    p.categoria,
+    SUM(v.quantidade) AS Qtd_total
+FROM vendas AS v
+INNER JOIN produtos AS p
+    ON p.id_produto = v.id_produto
+GROUP BY p.categoria
+ORDER BY Qtd_total DESC;
+END
+
+CALL quantidade_total_vendas_por_categoria
+
+```
