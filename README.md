@@ -7,12 +7,12 @@ Este projeto tem por objetivo ...
 ---
 
 ## 🧱 Estrutura da Base de Dados
-
-### 🗃️ Tabela: `Produtos`
 ```sql
 CREATE SCHEMA projeto_loja_cosmeticos;
 USE projeto_loja_cosmeticos;
 ```
+
+### 🗃️ Tabela: `Produtos`
 ```sql
 CREATE TABLE produtos (
     id_produto INT NOT NULL AUTO_INCREMENT,
