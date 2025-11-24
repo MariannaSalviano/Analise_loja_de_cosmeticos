@@ -467,7 +467,15 @@ LIMIT 5;
 ```
 
 ```sql
-
+--Produtos sem registro de vendas
+SELECT 
+    p.id_produto,
+    p.nome_produto,
+    p.categoria
+FROM produtos AS p
+LEFT JOIN vendas AS v
+    ON v.id_produto = p.id_produto
+WHERE v.id_produto IS NULL;
 ```
 ---
 
