@@ -438,11 +438,32 @@ CALL quantidade_total_vendas_por_produtos;
 ```
 
 ```sql
-
+--Produtos com preço acima da média da categoria
+SELECT 
+    p.id_produto,
+    p.nome_produto,
+    p.categoria,
+    p.preco_unitario
+FROM produtos AS p
+WHERE p.preco_unitario > (
+    SELECT AVG(preco_unitario)
+    FROM produtos
+    WHERE categoria = p.categoria
+);
 ```
 
 ```sql
-
+--Top 5 produtos mais vendidos
+SELECT
+	p.id_produto,
+    p.nome_produto,
+    SUM(v.quantidade) AS total_vendas
+FROM vendas AS v
+INNER JOIN produtos AS p
+    ON p.id_produto = v.id_produto
+GROUP BY p.id_produto, p.nome_produto
+ORDER BY total_vendas DESC
+LIMIT 5;
 ```
 
 ```sql
