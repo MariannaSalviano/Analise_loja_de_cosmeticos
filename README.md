@@ -364,30 +364,77 @@ INSERT INTO vendedores (id_vendedor, nome_vendedor, data_contratacao, ativo) VAL
 ## 📊 Consultas
 
 ```sql
-SELECT id_produto, nome_produto,categoria,preco_unitario
+SELECT id_produto, nome_produto, categoria, marca, preco_unitario
 FROM produtos
-WHERE categoria IN ('Perfumaria', 'Maquiagem') AND preco_unitario >= 51.90
-ORDER BY preco_unitario ASC;
+WHERE categoria IN ('Skincare','Maquiagem') AND
+marca NOT IN ('BelleAura', 'NovaDerma') 
+AND preco_unitario > 52.90;
 ```
 
 ```sql
+SELECT id_produto, nome_produto, categoria, marca, preco_unitario
+FROM produtos
+WHERE categoria IN ('Skincare','Maquiagem') AND 
+marca IN ('BelleAura', 'NovaDerma') 
+AND preco_unitario > 52.90;
+```
+
+```sql
+SELECT DISTINCT id_produto, nome_produto, marca, data_cadastro FROM produtos
+WHERE marca = ('NovaDerma') OR marca =('BelleAura')
+ORDER BY data_cadastro DESC;
+```
+
+```sql
+--Quantidade total de vendas por categoria
+CREATE DEFINER=`root`@`localhost` PROCEDURE `quantidade_total_vendas_por_categoria`()
+BEGIN
+SELECT 
+    p.categoria,
+    SUM(v.quantidade) AS Qtd_total
+FROM vendas AS v
+INNER JOIN produtos AS p
+    ON p.id_produto = v.id_produto
+GROUP BY p.categoria
+ORDER BY Qtd_total DESC;
+END
+
+CALL quantidade_total_vendas_por_categoria
 
 ```
 
 ```sql
+--Quantidade total de vendas por vendedor
+CREATE DEFINER=`root`@`localhost` PROCEDURE `quantidade_total_vendas`()
+BEGIN
+	SELECT vendas.id_vendedor, 
+	vendedores.nome_vendedor, 
+	SUM(vendas.quantidade) AS quantidade_total_vendas
+	FROM vendas INNER JOIN vendedores
+	ON vendas.id_vendedor = vendedores.id_vendedor
+	GROUP BY vendas.ID_vendedor
+	ORDER BY quantidade_total_vendas DESC;
+END
 
+CALL quantidade_total_vendas;
 ```
 
 ```sql
+--Quantidade total de vendas por produto
+CREATE DEFINER=`root`@`localhost` PROCEDURE `quantidade_total_vendas_por_produto`()
+BEGIN
+SELECT 
+    v.id_produto,
+    p.nome_produto,
+    SUM(v.quantidade) AS Qtd_total
+FROM vendas AS v
+INNER JOIN produtos AS p
+    ON p.id_produto = v.id_produto
+GROUP BY v.id_produto, p.nome_produto
+ORDER BY Qtd_total DESC;
+END
 
-```
-
-```sql
-
-```
-
-```sql
-
+CALL quantidade_total_vendas_por_produtos;
 ```
 
 ```sql
@@ -410,74 +457,3 @@ ORDER BY preco_unitario ASC;
 
 
 
-quantidade total de vendas por vendedor
-
-SELECT vendas.id_vendedor, 
-	vendedores.nome_vendedor, 
-	SUM(vendas.quantidade) AS quantidade_total_vendas
-FROM vendas INNER JOIN vendedores
-ON vendas.id_vendedor = vendedores.id_vendedor
-GROUP BY vendas.ID_vendedor
-ORDER BY quantidade_total_vendas DESC;
-
-´´´
-´´´
-Filtros 
-
-
-
-´´´
-
-Criando procedures
- ```
-quantidade total vendas por vendedor
-CREATE DEFINER=`root`@`localhost` PROCEDURE `quantidade_total_vendas`()
-BEGIN
-	SELECT vendas.id_vendedor, 
-	vendedores.nome_vendedor, 
-	SUM(vendas.quantidade) AS quantidade_total_vendas
-	FROM vendas INNER JOIN vendedores
-	ON vendas.id_vendedor = vendedores.id_vendedor
-	GROUP BY vendas.ID_vendedor
-	ORDER BY quantidade_total_vendas DESC;
-END
-
-CALL quantidade_total_vendas;
-```
-
-quantidade total vendas por produto
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `quantidade_total_vendas_por_produto`()
-BEGIN
-SELECT 
-    v.id_produto,
-    p.nome_produto,
-    SUM(v.quantidade) AS Qtd_total
-FROM vendas AS v
-INNER JOIN produtos AS p
-    ON p.id_produto = v.id_produto
-GROUP BY v.id_produto, p.nome_produto
-ORDER BY Qtd_total DESC;
-END
-
-CALL quantidade_total_vendas_por_produtos;
-
-```
-
-quantidade total de vendas por categoria
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `quantidade_total_vendas_por_categoria`()
-BEGIN
-SELECT 
-    p.categoria,
-    SUM(v.quantidade) AS Qtd_total
-FROM vendas AS v
-INNER JOIN produtos AS p
-    ON p.id_produto = v.id_produto
-GROUP BY p.categoria
-ORDER BY Qtd_total DESC;
-END
-
-CALL quantidade_total_vendas_por_categoria
-
-```
