@@ -1,6 +1,8 @@
 # Analise_loja_de_cosmeticos
 
-# Projeto Loja de Cosméticos -- Estrutura SQL
+Este projeto simula o banco de dados de uma loja de cosméticos, permitindo análises de vendas, estoque, produtos, desempenho de vendedores e tendências de categorias.
+
+Ele foi criado para fins de estudo, portfolio, demonstração e exercícios de SQL.
 
 ``` sql
 CREATE SCHEMA projeto_loja_cosmeticos;
