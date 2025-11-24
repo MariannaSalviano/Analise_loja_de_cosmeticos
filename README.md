@@ -178,7 +178,7 @@ INSERT INTO produtos (id_produto, nome_produto, categoria, marca, preco_unitario
 (99, 'Deo Colônia PureMagic 90ml', 'Perfumaria', 'LumiScents', 78.90, '2024-09-12'),
 (100, 'Kit Perfume + Creme InfinityLove', 'Perfumaria', 'EssenzaFleur', 159.90, '2024-09-15');
 ```
-```
+``` sql
 INSERT INTO vendedores (id_vendedor, nome_vendedor, data_contratacao, ativo) VALUES
 (1, 'Marina Duarte', '2022-01-10', 1),
 (2, 'Carlos Menezes', '2022-03-15', 1),
@@ -201,7 +201,7 @@ INSERT INTO vendedores (id_vendedor, nome_vendedor, data_contratacao, ativo) VAL
 (19, 'Natália Moura', '2024-04-05', 1),
 (20, 'Paulo Sérgio', '2024-05-10', 1);
 ```
-```
+``` sql
 INSERT INTO estoque (id_estoque, id_produto, quantidade_disponivel, data_atualizacao) VALUES
 (1, 1, 347, '2024-12-31 23:59:59'),
 (2, 2, 221, '2024-12-31 23:59:59'),
@@ -304,7 +304,7 @@ INSERT INTO estoque (id_estoque, id_produto, quantidade_disponivel, data_atualiz
 (99, 99, 304, '2024-12-31 23:59:59'),
 (100, 100, 376, '2024-12-31 23:59:59');
 ```
-```
+``` sql
 INSERT INTO vendas (id_venda, id_produto, id_vendedor, data_venda, quantidade, valor_unitario, valor_total) VALUES
 (1, 4, 2, '2023-01-12', 3, 59.90, 179.70),
 (2, 18, 5, '2023-02-08', 1, 129.50, 129.50),
