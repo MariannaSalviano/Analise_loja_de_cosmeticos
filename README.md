@@ -23,49 +23,6 @@ Relacionamentos:
 
 ---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ``` sql
 CREATE SCHEMA projeto_loja_cosmeticos;
 
@@ -118,7 +75,7 @@ ON UPDATE NO ACTION;
 ```
 Inserindo dados nas tabelas 
 
-```
+``` sql
 INSERT INTO produtos (id_produto, nome_produto, categoria, marca, preco_unitario, data_cadastro) VALUES
 (1, 'Creme Facial Hidratante LuminaSoft 50ml', 'Skincare', 'BelleAura', 59.90, '2023-01-10'),
 (2, 'Sérum Anti-Idade RadiantLift 30ml', 'Skincare', 'AuraVitta', 89.50, '2023-01-12'),
