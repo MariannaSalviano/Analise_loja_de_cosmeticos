@@ -1,26 +1,70 @@
-# Analise_loja_de_cosmeticos
 
-Este projeto simula o banco de dados de uma loja de cosméticos, permitindo análises de vendas, estoque, produtos, desempenho de vendedores e tendências de categorias.
+# 🧴 Banco de Dados — Loja de Cosméticos
 
-Ele foi criado para fins de estudo, portfolio, demonstração e exercícios de SQL.
+Este repositório contém um banco de dados completo e profissional para uma loja de cosméticos.  
+Inclui schema, tabelas, relacionamentos, inserts completos, dados de vendas e consultas analíticas.
+
+---
+
+## 📁 Estrutura do Projeto
 
 Tabelas incluídas:
 
-produtos
-
-estoque
-
-vendedores
-
-vendas
+- **produtos**
+- **estoque**
+- **vendedores**
+- **vendas**
 
 Relacionamentos:
 
-produtos (1:N) estoque
+- produtos (1:N) estoque  
+- produtos (1:N) vendas  
+- vendedores (1:N) vendas  
 
-produtos (1:N) vendas
+---
 
-vendedores (1:N) vendas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ``` sql
 CREATE SCHEMA projeto_loja_cosmeticos;
