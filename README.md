@@ -1,3 +1,138 @@
+# 📊 Análise de Vendas Loja de Cosméticos com MySQL
+
+A base de dados utilizada neste projeto é fictícia, elaborada exclusivamente para fins de portfólio. Ela simula o histórico de vendas de uma empresa do segmento de cosméticos.
+
+Este projeto tem por objetivo ...
+
+---
+
+## 🧱 Estrutura da Base de Dados
+
+### 🗃️ Tabela: `Produtos`
+
+```sql
+CREATE SCHEMA projeto_loja_cosmeticos;
+USE projeto_loja_cosmeticos;
+```
+```sql
+CREATE TABLE produtos (
+    id_produto INT NOT NULL AUTO_INCREMENT,
+    nome_produto VARCHAR(150) NOT NULL,
+    categoria VARCHAR(100) NOT NULL,
+    marca VARCHAR(100) NOT NULL,
+    preco_unitario DECIMAL(10,2) NOT NULL,
+    data_cadastro DATE NOT NULL,
+    PRIMARY KEY (id_produto)
+);
+```
+
+### 👩‍💼 Tabela: `Vendedores`
+```sql
+CREATE TABLE vendedores (
+    id_vendedor INT NOT NULL AUTO_INCREMENT,
+    nome_vendedor VARCHAR(150) NOT NULL,
+    data_contratacao DATE NOT NULL,
+    ativo TINYINT(1) NOT NULL DEFAULT 1,
+    PRIMARY KEY (id_vendedor)
+);
+```
+
+### 👩‍💼 Tabela: `Estoque`
+```sql
+CREATE TABLE estoque (
+    id_estoque INT NOT NULL AUTO_INCREMENT,
+    id_produto INT NOT NULL,
+    quantidade_disponivel INT NOT NULL,
+    data_atualizacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id_estoque),
+    FOREIGN KEY (id_produto) REFERENCES produtos(id_produto)
+);
+```
+
+### 👩‍💼 Tabela: `Vendas`
+```sql
+CREATE TABLE vendas (
+    id_venda INT NOT NULL AUTO_INCREMENT,
+    id_produto INT NOT NULL,
+    id_vendedor INT NOT NULL,
+    quantidade INT NOT NULL,
+    valor_unitario DECIMAL(10,2) NOT NULL,
+    valor_total DECIMAL(10,2) NOT NULL,
+    data_venda DATE NOT NULL,
+    PRIMARY KEY (id_venda)
+);
+```
+
+---
+
+## 📊 Consultas
+
+```sql
+
+```
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # 🧴 Banco de Dados — Loja de Cosméticos
 
