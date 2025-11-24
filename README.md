@@ -4,6 +4,24 @@ Este projeto simula o banco de dados de uma loja de cosméticos, permitindo aná
 
 Ele foi criado para fins de estudo, portfolio, demonstração e exercícios de SQL.
 
+Tabelas incluídas:
+
+produtos
+
+estoque
+
+vendedores
+
+vendas
+
+Relacionamentos:
+
+produtos (1:N) estoque
+
+produtos (1:N) vendas
+
+vendedores (1:N) vendas
+
 ``` sql
 CREATE SCHEMA projeto_loja_cosmeticos;
 
