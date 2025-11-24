@@ -36,7 +36,7 @@ CREATE TABLE vendedores (
 );
 ```
 
-### 👩‍💼 Tabela: `Estoque`
+### 📦 Tabela: `Estoque`
 ```sql
 CREATE TABLE estoque (
     id_estoque INT NOT NULL AUTO_INCREMENT,
@@ -48,7 +48,7 @@ CREATE TABLE estoque (
 );
 ```
 
-### 👩‍💼 Tabela: `Vendas`
+### 🛒 Tabela: `Vendas`
 ```sql
 CREATE TABLE vendas (
     id_venda INT NOT NULL AUTO_INCREMENT,
@@ -62,144 +62,8 @@ CREATE TABLE vendas (
 );
 ```
 
----
-
-## 📊 Consultas
-
 ```sql
-
-```
----
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 🧴 Banco de Dados — Loja de Cosméticos
-
-Este repositório contém um banco de dados completo e profissional para uma loja de cosméticos.  
-Inclui schema, tabelas, relacionamentos, inserts completos, dados de vendas e consultas analíticas.
-
----
-
-## 📁 Estrutura do Projeto
-
-Tabelas incluídas:
-
-- **produtos**
-- **estoque**
-- **vendedores**
-- **vendas**
-
-Relacionamentos:
-
-- produtos (1:N) estoque  
-- produtos (1:N) vendas  
-- vendedores (1:N) vendas  
-
----
-
-``` sql
-CREATE SCHEMA projeto_loja_cosmeticos;
-
-USE projeto_loja_cosmeticos;
-
-CREATE TABLE produtos (
-    id_produto INT NOT NULL AUTO_INCREMENT,
-    nome_produto VARCHAR(150) NOT NULL,
-    categoria VARCHAR(100) NOT NULL,
-    marca VARCHAR(100) NOT NULL,
-    preco_unitario DECIMAL(10,2) NOT NULL,
-    data_cadastro DATE NOT NULL,
-    PRIMARY KEY (id_produto)
-);
-
-CREATE TABLE estoque (
-    id_estoque INT NOT NULL AUTO_INCREMENT,
-    id_produto INT NOT NULL,
-    quantidade_disponivel INT NOT NULL,
-    data_atualizacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id_estoque),
-    FOREIGN KEY (id_produto) REFERENCES produtos(id_produto)
-);
-
-CREATE TABLE vendedores (
-    id_vendedor INT NOT NULL AUTO_INCREMENT,
-    nome_vendedor VARCHAR(150) NOT NULL,
-    data_contratacao DATE NOT NULL,
-    ativo TINYINT(1) NOT NULL DEFAULT 1,
-    PRIMARY KEY (id_vendedor)
-);
-
-CREATE TABLE vendas (
-    id_venda INT NOT NULL AUTO_INCREMENT,
-    id_produto INT NOT NULL,
-    id_vendedor INT NOT NULL,
-    quantidade INT NOT NULL,
-    valor_unitario DECIMAL(10,2) NOT NULL,
-    valor_total DECIMAL(10,2) NOT NULL,
-    data_venda DATE NOT NULL,
-    PRIMARY KEY (id_venda)
-);
-
+-- Criando o relacionamento entre as tabelas
 ALTER TABLE estoque 
 ADD CONSTRAINT CE_estoque_produtos
 FOREIGN KEY (id_produto)
@@ -207,9 +71,8 @@ REFERENCES produtos(id_produto)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 ```
-Inserindo dados nas tabelas 
-
-``` sql
+```sql
+-- Inserindo dados na tabela produtos
 INSERT INTO produtos (id_produto, nome_produto, categoria, marca, preco_unitario, data_cadastro) VALUES
 (1, 'Creme Facial Hidratante LuminaSoft 50ml', 'Skincare', 'BelleAura', 59.90, '2023-01-10'),
 (2, 'Sérum Anti-Idade RadiantLift 30ml', 'Skincare', 'AuraVitta', 89.50, '2023-01-12'),
@@ -312,30 +175,8 @@ INSERT INTO produtos (id_produto, nome_produto, categoria, marca, preco_unitario
 (99, 'Deo Colônia PureMagic 90ml', 'Perfumaria', 'LumiScents', 78.90, '2024-09-12'),
 (100, 'Kit Perfume + Creme InfinityLove', 'Perfumaria', 'EssenzaFleur', 159.90, '2024-09-15');
 ```
-``` sql
-INSERT INTO vendedores (id_vendedor, nome_vendedor, data_contratacao, ativo) VALUES
-(1, 'Marina Duarte', '2022-01-10', 1),
-(2, 'Carlos Menezes', '2022-03-15', 1),
-(3, 'Juliana Rocha', '2022-05-20', 0),   -- Inativa
-(4, 'Rafael Martins', '2022-08-02', 1),
-(5, 'Bianca Salles', '2022-09-10', 1),
-(6, 'Fernando Tavares', '2022-11-25', 0), -- Inativo
-(7, 'Aline Albuquerque', '2023-01-05', 1),
-(8, 'Lucas Monteiro', '2023-02-18', 1),
-(9, 'Gabriela Farias', '2023-03-22', 1),
-(10, 'Hugo Vasconcelos', '2023-04-10', 0), -- Inativo
-(11, 'Patrícia Ribeiro', '2023-06-01', 1),
-(12, 'Eduardo Silveira', '2023-07-09', 1),
-(13, 'Mariana Couto', '2023-08-12', 1),
-(14, 'Vinícius Prado', '2023-09-20', 1),
-(15, 'Camila Teixeira', '2023-11-03', 0), -- Inativa
-(16, 'Thiago Barbosa', '2024-01-10', 1),
-(17, 'Larissa Carvalho', '2024-02-14', 1),
-(18, 'Roberto Andrade', '2024-03-22', 1),
-(19, 'Natália Moura', '2024-04-05', 1),
-(20, 'Paulo Sérgio', '2024-05-10', 1);
-```
-``` sql
+```sql
+-- Inserindo dados na tabela estoque
 INSERT INTO estoque (id_estoque, id_produto, quantidade_disponivel, data_atualizacao) VALUES
 (1, 1, 347, '2024-12-31 23:59:59'),
 (2, 2, 221, '2024-12-31 23:59:59'),
@@ -438,7 +279,9 @@ INSERT INTO estoque (id_estoque, id_produto, quantidade_disponivel, data_atualiz
 (99, 99, 304, '2024-12-31 23:59:59'),
 (100, 100, 376, '2024-12-31 23:59:59');
 ```
-``` sql
+
+```sql
+-- Inserindo dados na tabela vendas
 INSERT INTO vendas (id_venda, id_produto, id_vendedor, data_venda, quantidade, valor_unitario, valor_total) VALUES
 (1, 4, 2, '2023-01-12', 3, 59.90, 179.70),
 (2, 18, 5, '2023-02-08', 1, 129.50, 129.50),
@@ -492,7 +335,80 @@ INSERT INTO vendas (id_venda, id_produto, id_vendedor, data_venda, quantidade, v
 (50, 100, 9, '2024-12-31', 1, 599.00, 599.00);
 ```
 
-Consultas
+```sql
+-- Inserindo dados na tabela vendedores
+INSERT INTO vendedores (id_vendedor, nome_vendedor, data_contratacao, ativo) VALUES
+(1, 'Marina Duarte', '2022-01-10', 1),
+(2, 'Carlos Menezes', '2022-03-15', 1),
+(3, 'Juliana Rocha', '2022-05-20', 0),   -- Inativa
+(4, 'Rafael Martins', '2022-08-02', 1),
+(5, 'Bianca Salles', '2022-09-10', 1),
+(6, 'Fernando Tavares', '2022-11-25', 0), -- Inativo
+(7, 'Aline Albuquerque', '2023-01-05', 1),
+(8, 'Lucas Monteiro', '2023-02-18', 1),
+(9, 'Gabriela Farias', '2023-03-22', 1),
+(10, 'Hugo Vasconcelos', '2023-04-10', 0), -- Inativo
+(11, 'Patrícia Ribeiro', '2023-06-01', 1),
+(12, 'Eduardo Silveira', '2023-07-09', 1),
+(13, 'Mariana Couto', '2023-08-12', 1),
+(14, 'Vinícius Prado', '2023-09-20', 1),
+(15, 'Camila Teixeira', '2023-11-03', 0), -- Inativa
+(16, 'Thiago Barbosa', '2024-01-10', 1),
+(17, 'Larissa Carvalho', '2024-02-14', 1),
+(18, 'Roberto Andrade', '2024-03-22', 1),
+(19, 'Natália Moura', '2024-04-05', 1),
+(20, 'Paulo Sérgio', '2024-05-10', 1);
+```
+---
+
+## 📊 Consultas
+
+```sql
+SELECT id_produto, nome_produto,categoria,preco_unitario
+FROM produtos
+WHERE categoria IN ('Perfumaria', 'Maquiagem') AND preco_unitario >= 51.90
+ORDER BY preco_unitario ASC;
+```
+
+```sql
+
+```
+
+```sql
+
+```
+
+```sql
+
+```
+
+```sql
+
+```
+
+```sql
+
+```
+
+```sql
+
+```
+
+```sql
+
+```
+
+```sql
+
+```
+---
+
+
+
+
+
+
+
 
 quantidade total de vendas por vendedor
 
@@ -508,10 +424,7 @@ ORDER BY quantidade_total_vendas DESC;
 ´´´
 Filtros 
 
-SELECT id_produto, nome_produto,categoria,preco_unitario
-FROM produtos
-WHERE categoria IN ('Perfumaria', 'Maquiagem') AND preco_unitario >= 51.90
-ORDER BY preco_unitario ASC;
+
 
 ´´´
 
