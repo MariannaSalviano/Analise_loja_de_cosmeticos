@@ -362,6 +362,7 @@ ORDER BY preco_unitario ASC;
 
 Criando procedures
  ```
+quantidade total vendas por vendedor
 CREATE DEFINER=`root`@`localhost` PROCEDURE `quantidade_total_vendas`()
 BEGIN
 	SELECT vendas.id_vendedor, 
@@ -374,4 +375,23 @@ BEGIN
 END
 
 CALL quantidade_total_vendas;
-``` 
+```
+
+quantidade total vendas por produto
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `quantidade_total_vendas_por_produto`()
+BEGIN
+SELECT 
+    v.id_produto,
+    p.nome_produto,
+    SUM(v.quantidade) AS Qtd_total
+FROM vendas AS v
+INNER JOIN produtos AS p
+    ON p.id_produto = v.id_produto
+GROUP BY v.id_produto, p.nome_produto
+ORDER BY Qtd_total DESC;
+END
+
+CALL quantidade_total_vendas_por_produtos;
+
+```
