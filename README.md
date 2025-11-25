@@ -502,6 +502,18 @@ WHERE p.preco_unitario = (
 ```
 ---
 
+```sql
+--Total de vendas realizada por vendedor
+SELECT 
+    v.nome_vendedor,
+    COALESCE(SUM(vd.valor_total), 0) AS valor_total_vendido
+FROM vendedores v
+LEFT JOIN vendas vd 
+    ON vd.id_vendedor = v.id_vendedor
+GROUP BY v.id_vendedor, v.nome_vendedor;
+```
+---
+
 
 
 
