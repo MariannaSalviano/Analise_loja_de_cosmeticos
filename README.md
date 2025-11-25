@@ -514,7 +514,18 @@ GROUP BY v.id_vendedor, v.nome_vendedor;
 ```
 ---
 
-
+```sql
+--Total de vendas realizada por vendedor com filtro
+SELECT 
+    v.nome_vendedor,
+    COALESCE(SUM(vd.valor_total), 0) AS valor_total_vendido
+FROM vendedores v
+INNER JOIN vendas vd 
+    ON vd.id_vendedor = v.id_vendedor
+WHERE v.nome_vendedor IN ('Marina Duarte', 'Carlos Menezes')
+GROUP BY v.id_vendedor, v.nome_vendedor;
+```
+---
 
 
 
